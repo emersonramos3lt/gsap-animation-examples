@@ -9,16 +9,19 @@ const GsapFromTo = () => {
         "#red-box",
         {
           // FROM
-          y: -80,
-          opacity: 0,
+          x: 0,
+          rotation: 0,
+          borderRadius: "0%",
         },
         {
           // TO
-          y: 0,
-          opacity: 1,
-          yoyo: true, // Vai e volta
+          x: 250,
           repeat: -1,
-          duration: 1.5,
+          yoyo: true,
+          borderRadius: "100%",
+          rotation: 360,
+          duration: 2.5,
+          ease: "bounce.out",
         },
       );
     },
