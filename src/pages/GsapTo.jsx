@@ -2,22 +2,29 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
 const GsapTo = () => {
-  // TODO: Implement the gsap.to() method
-
-  // BASIC STRUCTURE useGSAP:
-  // useGSAP(() => {}, { scope: "" });
+  let animation;
 
   useGSAP(
     () => {
-      gsap.to("#blue-box", {
+      animation = gsap.to("#blue-box", {
         y: 50,
         opacity: 1,
         duration: 1,
-        ease: "bounce.out", // Passa um pouquinho do topo e volta (efeito mola)
+        repeat: -1,
+        yoyo: true,
+        ease: "bounce.out",
       });
     },
     { scope: ".main-container" },
   );
+
+  const buttonPlayPause = () => {
+    if (animation.paused()) {
+      animation.play();
+    } else {
+      animation.pause();
+    }
+  };
 
   return (
     <main className="main-container">
@@ -46,6 +53,8 @@ const GsapTo = () => {
         </a>{" "}
         method.
       </p>
+
+      <button onClick={buttonPlayPause}>Play / Pause</button>
 
       <div className="mt-20">
         <div id="blue-box" className="w-20 h-20 bg-blue-500 rounded-lg" />
