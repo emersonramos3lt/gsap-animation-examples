@@ -1,40 +1,29 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { TextPlugin } from "gsap/TextPlugin";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(TextPlugin);
 
 const GsapTest = () => {
   useGSAP(
     () => {
-      gsap.to(".text-animated", {
-        opacity: 1,
-        scale: 1,
-        duration: 2,
-        scrollTrigger: {
-          trigger: ".text-animated",
-          start: "top 80%",
-          end: "top 40%",
-          scrub: 1,
-        },
+      // O GSAP fica responsável APENAS pela digitação do texto!
+      gsap.to("#typing-text", {
+        duration: 3,
+        text: "Desenvolvendo interfaces profissionais com GSAP e React.",
+        ease: "none",
       });
     },
-    { scope: ".main-container" },
+    { scope: ".main-content" },
   );
 
   return (
-    <main className="main-container">
-      <section className="h-screen flex items-center justify-center">
-        <h1 className="text-5xl font-bold">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis,
-          beatae.
-        </h1>
-      </section>
-      <section className="h-screen flex items-center justify-center">
-        <h1 className="text-animated text-4xl font-bold scale-50 opacity-20">
-          Lorem ipsum dolor sit amet.
-        </h1>
-      </section>
+    <main className="main-content p-10">
+      <h1 className="text-2xl font-mono text-white inline-block">
+        <span id="typing-text"></span>
+        {/* Apenas adicionei 'animate-pulse' do Tailwind aqui */}
+        <span className="animate-pulse text-white font-bold ml-0.5">|</span>
+      </h1>
     </main>
   );
 };
